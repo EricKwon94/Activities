@@ -10,7 +10,7 @@ allprojects {
 	}
 
 dependencies {
-	implementation 'com.github.kss2:Activities:1.0.0'
+	implementation 'com.github.kss2:Activities:1.0.1'
 }
 ```
 ## Usage
