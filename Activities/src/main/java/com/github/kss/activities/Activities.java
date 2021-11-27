@@ -15,16 +15,12 @@ public class Activities {
     }
 
     public static Activity getPreviousActivity() {
-        if (lifecycleListener.getActivities().size() == 0) {
+        if (lifecycleListener.getActivities().size() < 2) {
             return null;
-        }
-        else if (lifecycleListener.getActivities().size() == 1) {
-            return getCurrentActivity();
         }
         else {
             int index = lifecycleListener.getActivities().size() - 2;
-            Activity activity = (Activity) lifecycleListener.getActivities().toArray()[index];
-            return activity;
+            return (Activity) lifecycleListener.getActivities().toArray()[index];
         }
     }
 
@@ -36,6 +32,10 @@ public class Activities {
         return lifecycleListener.getActivity().getApplicationContext();
     }
 
+    public static void setListener(ActivitiesListener listener) {
+        lifecycleListener.setListener(listener);
+    }
+
     public static void init(Activity activity) {
         lifecycleListener = new ActivityLifecycleContextListener();
         activity.getApplication().registerActivityLifecycleCallbacks(lifecycleListener);
@@ -44,6 +44,7 @@ public class Activities {
 
     public static void release() {
         lifecycleListener.getActivities().clear();
+        lifecycleListener.setListener(null);
         lifecycleListener.getActivity().getApplication().unregisterActivityLifecycleCallbacks(lifecycleListener);
         lifecycleListener = null;
     }
