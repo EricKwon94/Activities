@@ -7,7 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 class ActivityLifecycleContextListener implements Application.ActivityLifecycleCallbacks {
@@ -22,9 +24,9 @@ class ActivityLifecycleContextListener implements Application.ActivityLifecycleC
         this.activity = activity;
     }
 
-    private Set<Activity> activities = new HashSet<>();
+    private List<Activity> activities = new ArrayList<>();
 
-    public Set<Activity> getActivities() {
+    public List<Activity> getActivities() {
         return activities;
     }
 
